@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Channel Info</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='template/style.css') }}">
+</head>
+<body>
+    <div class="channel-info">
+        <h2>Channel Information</h2>
+        <p><strong>Title:</strong> {{ channel_data.title }}</p>
+        <p><strong>Description:</strong> {{ channel_data.description }}</p>
+        <p><strong>Subscribers:</strong> {{ channel_data.subscribers }}</p>
+        <p><strong>Views:</strong> {{ channel_data.views }}</p>
+    </div>
+
+    <div class="video-info">
+        <h2>Latest Video</h2>
+        <p><strong>Title:</strong> {{ video_data.title }}</p>
+        <p><strong>Published At:</strong> {{ video_data.published_at }}</p>
+        <p><strong>Description:</strong> {{ video_data.description }}</p>
+        <p><strong>Summarized Description:</strong> {{ video_data.summarized_description }}</p>
+        <p><strong>Sentiment:</strong> {{ video_data.sentiment }}</p>
+    </div>
+
+    <div class="comment-box">
+        <h3>Top Comments</h3>
+        {% for comment in video_data.comments %}
+            <div class="comment-box">
+                <p class="comment-author">{{ comment.author }}:</p>
+                <p>{{ comment.text }}</p>
+                <p><strong>Summarized Comment:</strong> {{ comment.summarized_comment }}</p>
+                <p><strong>Sentiment:</strong> {{ comment.sentiment }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
